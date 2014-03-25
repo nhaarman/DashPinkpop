@@ -1,0 +1,59 @@
+apply plugin: 'android'
+apply plugin: 'build-version'
+
+apply from: 'increaseVersionCode.gradle'
+apply from: 'buildVersion.gradle'
+
+dependencies {
+    compile 'com.google.android.apps.dashclock:dashclock-api:+'
+    compile 'joda-time:joda-time:2.3@jar'
+}
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion '19.0.3'
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 19
+        versionName buildVersion.version
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file(System.getProperty("user.home") + "/.android/debug.keystore")
+        }
+
+        dashpinkpop {
+            storeFile file(System.getProperty("user.home") + "/.android/nhaarman.keystore")
+            storePassword(nhaarman_dashpinkpop_storePassword)
+            keyAlias(nhaarman_dashpinkpop_keyAlias)
+            keyPassword(nhaarman_dashpinkpop_keyPassword)
+        }
+    }
+
+    buildTypes {
+
+        debug {
+            versionNameSuffix "d";
+            debuggable true
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            versionNameSuffix ""
+            debuggable false
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.dashpinkpop
+        }
+    }
+}
+
+
+
+
+
+

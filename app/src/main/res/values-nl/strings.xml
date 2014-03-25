@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DashPinkpop</string>
+    <string name="extension_title">Pinkpop 2014</string>
+    <string name="extension_description">Geeft de tijd weer tot Pinkpop 2014</string>
+
+    <string name="time_left">%1$s %2$s %3$s te gaan tot Pinkpop 2014</string>
+    <string name="active">Pinkpop 2014 is begonnen!</string>
+    <string name="finished">Pinkpop 2014 is afgelopen</string>
+
+    <plurals name="days">
+        <item quantity="one">%d dag, </item>
+        <item quantity="other">%d dagen, </item>
+    </plurals>
+
+    <plurals name="hours">
+        <item quantity="one">%d uur, </item>
+        <item quantity="other">%d uur, </item>
+    </plurals>
+
+    <plurals name="minutes">
+        <item quantity="one">%d minuut</item>
+        <item quantity="other">%d minuten</item>
+    </plurals>
+
+</resources>

@@ -6,7 +6,7 @@ import com.nhaarman.dashclock.pinkpop.preferences.Preferences;
 
 import org.joda.time.DateTime;
 
-public class PreferencePinkpopDates implements PinkpopDates {
+public class PreferencePinkpopDates extends DefaultPinkpopDates {
 
     private final Context mContext;
 
@@ -17,10 +17,5 @@ public class PreferencePinkpopDates implements PinkpopDates {
     @Override
     public DateTime getStartDateTime() {
         return Preferences.getStartDate(mContext);
-    }
-
-    @Override
-    public DateTime getEndDateTime() {
-        return Preferences.getEndDate(mContext);
     }
 }

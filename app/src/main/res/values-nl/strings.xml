@@ -9,6 +9,9 @@
     <string name="active">Pinkpop 2014 is begonnen!</string>
     <string name="finished">Pinkpop 2014 is afgelopen</string>
 
+    <string name="preferences_datetime_start_title">Startdatum</string>
+    <string name="preferences_datetime_start_summary">Kies je eigen startdag en tijd</string>
+
     <plurals name="days">
         <item quantity="one">%d dag, </item>
         <item quantity="other">%d dagen, </item>

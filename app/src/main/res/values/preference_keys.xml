@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="pref_start_datetime" translatable="false">PREF_START_DATETIME</string>
+
+</resources>

@@ -6,6 +6,7 @@ import android.net.Uri;
 import com.google.android.apps.dashclock.api.DashClockExtension;
 import com.google.android.apps.dashclock.api.ExtensionData;
 import com.nhaarman.dashclock.pinkpop.displaystrategy.DisplayStrategy;
+import com.nhaarman.dashclock.pinkpop.preferences.Preferences;
 
 public class PinkPopExtension extends DashClockExtension {
 

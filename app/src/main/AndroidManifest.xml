@@ -2,7 +2,7 @@
 <manifest
     package="com.nhaarman.dashclock.pinkpop"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="12">
+    android:versionCode="154">
 
     <application
         android:allowBackup="true"
@@ -28,6 +28,13 @@
             <meta-data
                 android:name="description"
                 android:value="@string/extension_description" />
+            <meta-data
+                android:name="settingsActivity"
+                android:value=".preferences.PreferencesActivity" />
         </service>
+
+        <activity
+            android:name=".preferences.PreferencesActivity"
+            android:exported="true" />
     </application>
 </manifest>

@@ -1,6 +1,7 @@
 package com.nhaarman.dashclock.pinkpop.preferences;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.nhaarman.dashclock.pinkpop.R;
@@ -37,7 +38,11 @@ public class Preferences {
     }
 
     public static void setStartDate(final Context context, final DateTime startDateTime) {
-        PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(context.getString(R.string.pref_start_datetime), startDateTime.getMillis()).commit();
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        if (startDateTime == null) {
+            editor.remove(context.getString(R.string.pref_start_datetime)).commit();
+        } else {
+            editor.putLong(context.getString(R.string.pref_start_datetime), startDateTime.getMillis()).commit();
+        }
     }
-
 }

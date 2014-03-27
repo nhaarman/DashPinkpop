@@ -5,7 +5,7 @@
     <string name="extension_title">Pinkpop 2014</string>
     <string name="extension_description">Geeft de tijd weer tot Pinkpop 2014</string>
 
-    <string name="time_left">%1$s %2$s %3$s te gaan tot Pinkpop 2014</string>
+    <string name="time_left">%1$s%2$s%3$s te gaan tot Pinkpop 2014</string>
     <string name="active">Pinkpop 2014 is begonnen!</string>
     <string name="finished">Pinkpop 2014 is afgelopen</string>
 
@@ -13,13 +13,13 @@
     <string name="preferences_datetime_start_summary">Kies je eigen startdag en tijd</string>
 
     <plurals name="days">
-        <item quantity="one">%d dag, </item>
-        <item quantity="other">%d dagen, </item>
+        <item quantity="one">%d dag</item>
+        <item quantity="other">%d dagen</item>
     </plurals>
 
     <plurals name="hours">
-        <item quantity="one">%d uur, </item>
-        <item quantity="other">%d uur, </item>
+        <item quantity="one">%d uur</item>
+        <item quantity="other">%d uur</item>
     </plurals>
 
     <plurals name="minutes">

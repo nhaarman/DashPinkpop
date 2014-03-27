@@ -52,17 +52,24 @@ public class CountDownStrategy implements DisplayStrategy {
     }
 
     private String generateTimeLeftString(final DateTime startDateTime) {
-        DateTime now = DateTime.now();
+        DateTime now = DateTime.now().withSecondOfMinute(0).withMillisOfSecond(0);
 
         int days = Days.daysBetween(now, startDateTime).getDays();
         int hours = Hours.hoursBetween(now, startDateTime.minusDays(days)).getHours();
-        int minutes = Minutes.minutesBetween(now, startDateTime.minusDays(days).minusHours(hours)).getMinutes() + 1;
+        int minutes = Minutes.minutesBetween(now, startDateTime.minusDays(days).minusHours(hours)).getMinutes();
 
         Resources resources = mContext.getResources();
 
         String daysString = days > 0 ? resources.getQuantityString(R.plurals.days, days, days) : "";
         String hoursString = hours > 0 ? resources.getQuantityString(R.plurals.hours, hours, hours) : "";
-        String minutesString = resources.getQuantityString(R.plurals.minutes, minutes, minutes);
+        String minutesString = minutes > 0 ? resources.getQuantityString(R.plurals.minutes, minutes, minutes) : "";
+
+        if (days > 0 && (hours > 0 || minutes > 0)) {
+            daysString += ", ";
+        }
+        if (hours > 0 && minutes > 0) {
+            hoursString += ", ";
+        }
 
         return resources.getString(R.string.time_left, daysString, hoursString, minutesString).trim();
     }

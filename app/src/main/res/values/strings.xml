@@ -5,7 +5,7 @@
     <string name="extension_title">Pinkpop 2014</string>
     <string name="extension_description">Displays time left until Pinkpop 2014</string>
 
-    <string name="time_left">%1$s %2$s %3$s left until Pinkpop 2014</string>
+    <string name="time_left">%1$s%2$s%3$s left until Pinkpop 2014</string>
     <string name="active">Pinkpop 2014 has started!</string>
     <string name="finished">Pinkpop 2014 has finished!</string>
 
@@ -13,13 +13,13 @@
     <string name="preferences_datetime_start_summary">Customize the start date and time</string>
 
     <plurals name="days">
-        <item quantity="one">%d day, </item>
-        <item quantity="other">%d days, </item>
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
     </plurals>
 
     <plurals name="hours">
-        <item quantity="one">%d hour, </item>
-        <item quantity="other">%d hours, </item>
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
     </plurals>
 
     <plurals name="minutes">

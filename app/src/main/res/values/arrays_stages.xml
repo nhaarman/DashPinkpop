@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="stages">
-        <item>@string/stage_main</item>
-        <item>@string/stage_3fm</item>
-        <item>@string/stage_brand</item>
-    </string-array>
-
     <string-array name="artists_mainstage">
         <item>@string/artist_therollingstones</item>
         <item>@string/artist_johnmayer</item>

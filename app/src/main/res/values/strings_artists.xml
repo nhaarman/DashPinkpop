@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Saturday -->
+    <string name="artist_therollingstones">The Rolling Stones</string>
+    <string name="artist_johnmayer">John Mayer</string>
+    <string name="artist_bastille">Bastille</string>
+    <string name="artist_floggingmolly">Flogging Molly</string>
+    <string name="artist_edkowalczyk">Ed Kowalczyk</string>
+    <string name="artist_joebonamassa">Joe Bonamassa</string>
+    <string name="artist_epica">Epica</string>
+    <string name="artist_haim">Haim</string>
+    <string name="artist_lesdjinns">Les Djinns</string>
+    <string name="artist_whitelies">White Lies</string>
+
+    <!-- Sunday -->
+    <string name="artist_arcticmonkeys">Arctic Monkeys</string>
+    <string name="artist_editors">Editors</string>
+    <string name="artist_edsheeran">Ed Sheeran</string>
+    <string name="artist_thekooks">The Kooks</string>
+    <string name="artist_robertplant">Robert Plant and the Sensational Space Shifters</string>
+    <string name="artist_paolonutini">Paolo Nutini</string>
+    <string name="artist_rudimental">Rudimental</string>
+    <string name="artist_chefspecial">Chef\'Special</string>
+    <string name="artist_northmississippiallstars">North Mississippi Allstars</string>
+    <string name="artist_limpbizkit">Limp Bizkit</string>
+    <string name="artist_theboxerrebellion">The Boxer Rebellion</string>
+    <string name="artist_johnnewman">John Newman</string>
+    <string name="artist_portugaltheman">Portugal. The Man</string>
+    <string name="artist_twentyonepilots">Twenty One Pilots</string>
+
+    <!-- Monday -->
+    <string name="artist_metallica">Metallica</string>
+    <string name="artist_arcadefire">Arcade Fire</string>
+    <string name="artist_avengedsevenfold">Avenged Sevenfold</string>
+    <string name="artist_stromae">Stromae</string>
+    <string name="artist_jakebugg">Jake Bugg</string>
+    <string name="artist_biffyclyro">Biffy Clyro</string>
+    <string name="artist_mastodon">Mastodon</string>
+    <string name="artist_robzombie">Rob Zombie</string>
+    <string name="artist_jettrebel">Jett Rebel</string>
+    <string name="artist_kodaline">Kodaline</string>
+    <string name="artist_bombaybicyleclub">Bombay Bicycle Club</string>
+    <string name="artist_gogolbordello">Gogol Bordello</string>
+    <string name="artist_ghost">Ghost</string>
+    <string name="artist_youngthegiant">Young the Giant</string>
+    <string name="artist_cleanbandit">Clean Bandit</string>
+
+</resources>

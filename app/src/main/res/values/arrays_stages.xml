@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="stages">
+        <item>@string/stage_main</item>
+        <item>@string/stage_3fm</item>
+        <item>@string/stage_brand</item>
+    </string-array>
+
+    <string-array name="artists_mainstage">
+        <item>@string/artist_therollingstones</item>
+        <item>@string/artist_johnmayer</item>
+        <item>@string/artist_floggingmolly</item>
+        <item>@string/artist_edkowalczyk</item>
+        <item>@string/artist_arcticmonkeys</item>
+        <item>@string/artist_editors</item>
+        <item>@string/artist_edsheeran</item>
+        <item>@string/artist_thekooks</item>
+        <item>@string/artist_chefspecial</item>
+        <item>@string/artist_metallica</item>
+        <item>@string/artist_avengedsevenfold</item>
+        <item>@string/artist_biffyclyro</item>
+        <item>@string/artist_mastodon</item>
+        <item>@string/artist_robzombie</item>
+    </string-array>
+
+    <string-array name="artists_3fmstage">
+        <item>@string/artist_bastille</item>
+        <item>@string/artist_joebonamassa</item>
+        <item>@string/artist_haim</item>
+        <item>@string/artist_robertplant</item>
+        <item>@string/artist_paolonutini</item>
+        <item>@string/artist_limpbizkit</item>
+        <item>@string/artist_rudimental</item>
+        <item>@string/artist_northmississippiallstars</item>
+        <item>@string/artist_arcadefire</item>
+        <item>@string/artist_stromae</item>
+        <item>@string/artist_jakebugg</item>
+        <item>@string/artist_kodaline</item>
+        <item>@string/artist_jettrebel</item>
+    </string-array>
+
+    <string-array name="artists_brandstage">
+        <item>@string/artist_epica</item>
+        <item>@string/artist_whitelies</item>
+        <item>@string/artist_lesdjinns</item>
+        <item>@string/artist_theboxerrebellion</item>
+        <item>@string/artist_johnnewman</item>
+        <item>@string/artist_portugaltheman</item>
+        <item>@string/artist_twentyonepilots</item>
+        <item>@string/artist_bombaybicyleclub</item>
+        <item>@string/artist_gogolbordello</item>
+        <item>@string/artist_cleanbandit</item>
+        <item>@string/artist_ghost</item>
+        <item>@string/artist_youngthegiant</item>
+    </string-array>
+
+</resources>

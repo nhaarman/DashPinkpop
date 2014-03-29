@@ -39,6 +39,10 @@ public class EnglishCountDownStrategyTest extends AndroidTestCase {
         assertThat(mCountDownStrategy.generateTimeLeftString(DATETIME_FROM, DATETIME_FROM.plusDays(1)), startsWith("1 day left"));
     }
 
+    public void test30Days() {
+        assertThat(mCountDownStrategy.generateTimeLeftString(DATETIME_FROM, DATETIME_FROM.plusDays(30)), startsWith("30 days left"));
+    }
+
     public void test1Hour() {
         assertThat(mCountDownStrategy.generateTimeLeftString(DATETIME_FROM, DATETIME_FROM.plusHours(1)), startsWith("1 hour left"));
     }

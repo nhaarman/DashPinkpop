@@ -55,13 +55,9 @@ public class CountDownStrategy implements DisplayStrategy {
     public String generateTimeLeftString(final DateTime fromDateTime, final DateTime toDateTime) {
         Period period = new Period(fromDateTime, toDateTime);
 
-        int days = Days.daysBetween(fromDateTime.toLocalDateTime(), toDateTime.toLocalDateTime()).getDays();
-        int hours = Hours.hoursBetween(fromDateTime.toLocalDateTime(), toDateTime.toLocalDateTime().minusDays(days)).getHours();
-        int minutes = Minutes.minutesBetween(fromDateTime.toLocalDateTime(), toDateTime.toLocalDateTime().minusDays(days).minusHours(hours)).getMinutes();
-
-        days = period.getDays();
-        hours = period.getHours();
-        minutes = period.getMinutes();
+        int days = Days.daysBetween(fromDateTime, toDateTime).getDays();
+        int hours = period.getHours();
+        int minutes = period.getMinutes();
 
         Resources resources = mContext.getResources();
 

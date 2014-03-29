@@ -10,6 +10,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.Hours;
 import org.joda.time.Minutes;
+import org.joda.time.Period;
 
 public class CountDownStrategy implements DisplayStrategy {
 
@@ -41,7 +42,7 @@ public class CountDownStrategy implements DisplayStrategy {
         DateTime startDateTime = mPinkpopDates.getStartDateTime();
 
         if (startDateTime.isAfterNow()) {
-            result = generateTimeLeftString(startDateTime);
+            result = generateTimeLeftString(DateTime.now().withSecondOfMinute(0).withMillisOfSecond(0), startDateTime);
         } else if (mPinkpopDates.getEndDateTime().isAfterNow()) {
             result = mContext.getString(R.string.active);
         } else {
@@ -51,12 +52,16 @@ public class CountDownStrategy implements DisplayStrategy {
         return result;
     }
 
-    private String generateTimeLeftString(final DateTime startDateTime) {
-        DateTime now = DateTime.now().withSecondOfMinute(0).withMillisOfSecond(0);
+    public String generateTimeLeftString(final DateTime fromDateTime, final DateTime toDateTime) {
+        Period period = new Period(fromDateTime, toDateTime);
 
-        int days = Days.daysBetween(now, startDateTime).getDays();
-        int hours = Hours.hoursBetween(now, startDateTime.minusDays(days)).getHours();
-        int minutes = Minutes.minutesBetween(now, startDateTime.minusDays(days).minusHours(hours)).getMinutes();
+        int days = Days.daysBetween(fromDateTime.toLocalDateTime(), toDateTime.toLocalDateTime()).getDays();
+        int hours = Hours.hoursBetween(fromDateTime.toLocalDateTime(), toDateTime.toLocalDateTime().minusDays(days)).getHours();
+        int minutes = Minutes.minutesBetween(fromDateTime.toLocalDateTime(), toDateTime.toLocalDateTime().minusDays(days).minusHours(hours)).getMinutes();
+
+        days = period.getDays();
+        hours = period.getHours();
+        minutes = period.getMinutes();
 
         Resources resources = mContext.getResources();
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="preferences_datetime_start_title">Startdatum</string>
+    <string name="preferences_datetime_start_summary">Kies je eigen startdag en tijd</string>
+
+    <string name="preferences_displaystrategy_title">Weergegeven tekst</string>
+    <string name="preferences_displaystrategy_summary">Selecteer welke tekst weergegeven moet worden</string>
+
+    <string-array name="preferences_displaystrategy_entries">
+        <item>Zaterdag: Rolling Stones (Main Stage)\n2 dagen te gaan tot Pinkpop 2014</item>
+        <item>Pinkpop 2014\n2 dagen te gaan tot Pinkpop 2014</item>
+    </string-array>
+
+    <integer-array name="preferences_displaystrategy_entryvalues">
+        <item>@string/pref_displaystrategy_value_artistcountdown</item>
+        <item>@string/pref_displaystrategy_value_countdown</item>
+    </integer-array>
+
+</resources>

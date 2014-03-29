@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Saturday -->
+    <string name="artist_therollingstones" translatable="false">The Rolling Stones</string>
+    <string name="artist_johnmayer" translatable="false">John Mayer</string>
+    <string name="artist_bastille" translatable="false">Bastille</string>
+    <string name="artist_floggingmolly" translatable="false">Flogging Molly</string>
+    <string name="artist_edkowalczyk" translatable="false">Ed Kowalczyk</string>
+    <string name="artist_joebonamassa" translatable="false">Joe Bonamassa</string>
+    <string name="artist_epica" translatable="false">Epica</string>
+    <string name="artist_haim" translatable="false">Haim</string>
+    <string name="artist_lesdjinns" translatable="false">Les Djinns</string>
+    <string name="artist_whitelies" translatable="false">White Lies</string>
+
+    <!-- Sunday -->
+    <string name="artist_arcticmonkeys" translatable="false">Arctic Monkeys</string>
+    <string name="artist_editors" translatable="false">Editors</string>
+    <string name="artist_edsheeran" translatable="false">Ed Sheeran</string>
+    <string name="artist_thekooks" translatable="false">The Kooks</string>
+    <string name="artist_robertplant" translatable="false">Robert Plant and the Sensational Space Shifters</string>
+    <string name="artist_paolonutini" translatable="false">Paolo Nutini</string>
+    <string name="artist_rudimental" translatable="false">Rudimental</string>
+    <string name="artist_chefspecial" translatable="false">Chef\'Special</string>
+    <string name="artist_northmississippiallstars" translatable="false">North Mississippi Allstars</string>
+    <string name="artist_limpbizkit" translatable="false">Limp Bizkit</string>
+    <string name="artist_theboxerrebellion" translatable="false">The Boxer Rebellion</string>
+    <string name="artist_johnnewman" translatable="false">John Newman</string>
+    <string name="artist_portugaltheman" translatable="false">Portugal. The Man</string>
+    <string name="artist_twentyonepilots" translatable="false">Twenty One Pilots</string>
+
+    <!-- Monday -->
+    <string name="artist_metallica" translatable="false">Metallica</string>
+    <string name="artist_arcadefire" translatable="false">Arcade Fire</string>
+    <string name="artist_avengedsevenfold" translatable="false">Avenged Sevenfold</string>
+    <string name="artist_stromae" translatable="false">Stromae</string>
+    <string name="artist_jakebugg" translatable="false">Jake Bugg</string>
+    <string name="artist_biffyclyro" translatable="false">Biffy Clyro</string>
+    <string name="artist_mastodon" translatable="false">Mastodon</string>
+    <string name="artist_robzombie" translatable="false">Rob Zombie</string>
+    <string name="artist_jettrebel" translatable="false">Jett Rebel</string>
+    <string name="artist_kodaline" translatable="false">Kodaline</string>
+    <string name="artist_bombaybicyleclub" translatable="false">Bombay Bicycle Club</string>
+    <string name="artist_gogolbordello" translatable="false">Gogol Bordello</string>
+    <string name="artist_ghost" translatable="false">Ghost</string>
+    <string name="artist_youngthegiant" translatable="false">Young the Giant</string>
+    <string name="artist_cleanbandit" translatable="false">Clean Bandit</string>
+
+</resources>

@@ -4,7 +4,15 @@
 
     <Preference
         android:key="@string/pref_start_datetime"
-        android:title="@string/preferences_datetime_start_title"
-        android:summary="@string/preferences_datetime_start_summary" />
+        android:summary="@string/preferences_datetime_start_summary"
+        android:title="@string/preferences_datetime_start_title" />
+
+    <ListPreference
+        android:defaultValue="@string/pref_displaystrategy_value_default"
+        android:entries="@array/preferences_displaystrategy_entries"
+        android:entryValues="@array/preferences_displaystrategy_entryvalues"
+        android:key="@string/pref_displaystrategy"
+        android:summary="@string/preferences_displaystrategy_summary"
+        android:title="@string/preferences_displaystrategy_title" />
 
 </PreferenceScreen>

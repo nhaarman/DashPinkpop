@@ -19,7 +19,7 @@ public class PinkPopExtension extends DashClockExtension {
 
     @Override
     protected void onUpdateData(final int reason) {
-        DisplayStrategy displayStrategy = Preferences.getExtensionStrategy(this);
+        DisplayStrategy displayStrategy = Preferences.getDisplayStrategy(this);
 
         ExtensionData data = new ExtensionData();
         data.visible(true);

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="pref_start_datetime" translatable="false">PREF_START_DATETIME</string>
+    <string name="pref_displaystrategy" translatable="false">PREF_DISPLAYSTRATEGY</string>
+
+    <string name="pref_displaystrategy_value_countdown">countdown</string>
+    <string name="pref_displaystrategy_value_artistcountdown">artistcountdown</string>
+    <string name="pref_displaystrategy_value_default">@string/pref_displaystrategy_value_artistcountdown</string>
+</resources>

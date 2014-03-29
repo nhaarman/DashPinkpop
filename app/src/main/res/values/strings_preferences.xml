@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="preferences_datetime_start_title">Start date</string>
+    <string name="preferences_datetime_start_summary">Customize the start date and time</string>
+
+    <string name="preferences_displaystrategy_title">Extension text</string>
+    <string name="preferences_displaystrategy_summary">Select which text should be shown</string>
+
+    <string-array name="preferences_displaystrategy_entries">
+        <item>Saturday: Rolling Stones (Main Stage)\n2 days left until Pinkpop 2014</item>
+        <item>Pinkpop 2014\n2 days left until Pinkpop 2014</item>
+    </string-array>
+
+    <integer-array name="preferences_displaystrategy_entryvalues">
+        <item>@string/pref_displaystrategy_value_artistcountdown</item>
+        <item>@string/pref_displaystrategy_value_countdown</item>
+    </integer-array>
+
+</resources>

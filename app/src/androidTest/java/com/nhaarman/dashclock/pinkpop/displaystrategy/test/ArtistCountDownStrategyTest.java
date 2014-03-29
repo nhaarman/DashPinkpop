@@ -27,6 +27,4 @@ public class ArtistCountDownStrategyTest extends AndroidTestCase {
             assertThat(expandedTitle, matches(PATTERN_EXPANDED_TITLE));
         }
     }
-
-
 }

@@ -213,23 +213,4 @@ public class EnglishCountDownStrategyTest extends AndroidTestCase {
         mMockPinkpopDates.setStartDateTime(DateTime.now().plusDays(266).plusHours(23).plusMinutes(59));
         assertThat(mCountDownStrategy.getExpandedBody(), startsWith("266 days, 23 hours, 59 minutes left"));
     }
-
-    private class MockPinkpopDates implements PinkpopDates {
-
-        private DateTime mStartDateTime;
-
-        @Override
-        public DateTime getStartDateTime() {
-            return mStartDateTime;
-        }
-
-        public void setStartDateTime(final DateTime startDateTime) {
-            mStartDateTime = startDateTime.withSecondOfMinute(0).withMillisOfSecond(0);
-        }
-
-        @Override
-        public DateTime getEndDateTime() {
-            return null;
-        }
-    }
 }

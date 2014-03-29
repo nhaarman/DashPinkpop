@@ -12,6 +12,12 @@
     <string name="preferences_datetime_start_title">Start date</string>
     <string name="preferences_datetime_start_summary">Customize the start date and time</string>
 
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+
+    <string name="day_artist_stage">%1$s: %2$s\n(%3$s)</string>
+
     <plurals name="days">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>

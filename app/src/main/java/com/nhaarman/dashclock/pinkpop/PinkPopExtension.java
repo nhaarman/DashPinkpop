@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.PowerManager;
 
 import com.google.android.apps.dashclock.api.DashClockExtension;
 import com.google.android.apps.dashclock.api.ExtensionData;
@@ -52,7 +53,11 @@ public class PinkPopExtension extends DashClockExtension {
         @Override
         public void onReceive(final Context context, final Intent intent) {
             context.unregisterReceiver(this);
-            context.getContentResolver().notifyChange(Uri.parse(CONTENT + context.getString(R.string.authority)), null);
+
+            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+            if (pm.isScreenOn()) {
+                context.getContentResolver().notifyChange(Uri.parse(CONTENT + context.getString(R.string.authority)), null);
+            }
         }
     }
 }

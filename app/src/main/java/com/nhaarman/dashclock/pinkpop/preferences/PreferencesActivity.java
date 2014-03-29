@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.nhaarman.dashclock.pinkpop.R;
 import com.nhaarman.dashclock.pinkpop.dates.DefaultPinkpopDates;
@@ -20,6 +22,8 @@ import com.nhaarman.dashclock.pinkpop.dates.DefaultPinkpopDates;
 import org.joda.time.DateTime;
 
 public class PreferencesActivity extends PreferenceActivity {
+
+    private static final String CONTENT = "content://";
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -46,6 +50,12 @@ public class PreferencesActivity extends PreferenceActivity {
     @Override
     protected boolean isValidFragment(final String fragmentName) {
         return fragmentName.equals(PreferencesFragment.class.getName());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        getContentResolver().notifyChange(Uri.parse(CONTENT + getResources().getString(R.string.authority)), null);
     }
 
     public static class PreferencesFragment extends PreferenceFragment {

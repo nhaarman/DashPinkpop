@@ -30,4 +30,7 @@
         <item quantity="other">%d minutes</item>
     </plurals>
 
+    <!-- Other -->
+    <string name="authority" translatable="false">provider</string>
+
 </resources>

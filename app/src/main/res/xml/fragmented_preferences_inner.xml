@@ -8,6 +8,7 @@
         android:title="@string/preferences_datetime_start_title" />
 
     <ListPreference
+        android:defaultValue="@string/pref_displaystrategy_value_default"
         android:entries="@array/preferences_displaystrategy_entries"
         android:entryValues="@array/preferences_displaystrategy_entryvalues"
         android:key="@string/pref_displaystrategy"

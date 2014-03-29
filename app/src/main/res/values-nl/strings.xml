@@ -9,8 +9,11 @@
     <string name="active">Pinkpop 2014 is begonnen!</string>
     <string name="finished">Pinkpop 2014 is afgelopen</string>
 
-    <string name="preferences_datetime_start_title">Startdatum</string>
-    <string name="preferences_datetime_start_summary">Kies je eigen startdag en tijd</string>
+    <string name="saturday">Zaterdag</string>
+    <string name="sunday">Zondag</string>
+    <string name="monday">Maandag</string>
+
+    <string name="day_artist_stage">%1$s: %2$s\n(%3$s)</string>
 
     <plurals name="days">
         <item quantity="one">%d dag</item>

@@ -54,6 +54,7 @@
         <item>@string/artist_lesdjinns</item>
         <item>@string/artist_therollingstones</item>
         <item>@string/artist_whitelies</item>
+        <item>@string/artist_thelau</item>
     </string-array>
 
     <string-array name="artists_sunday">
@@ -71,6 +72,7 @@
         <item>@string/artist_theboxerrebellion</item>
         <item>@string/artist_thekooks</item>
         <item>@string/artist_twentyonepilots</item>
+        <item>@string/artist_taymir</item>
     </string-array>
 
     <string-array name="artists_monday">

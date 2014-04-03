@@ -2,8 +2,6 @@ language: java
 jdk: oraclejdk7
 
 env:
-  matrix:
-    - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
   global:
     - secure: Kvf80ID0z7g2th2AAr/R9cy3fbY0CBg4i1fHuTMPsBeRWMS+adt+81aCg7KsoFuUBNZNPyFv0OuJRmWaGFPwKB/18CImM0y18IdM9X4MV/9iX63da4s/gezW9sMwgVQHKRgY/pOR3wDYS1DIeogs4h1SmIYU4z8wep7v12RVr3Q=
 

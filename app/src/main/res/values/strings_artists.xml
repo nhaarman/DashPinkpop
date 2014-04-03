@@ -12,6 +12,7 @@
     <string name="artist_haim" translatable="false">Haim</string>
     <string name="artist_lesdjinns" translatable="false">Les Djinns</string>
     <string name="artist_whitelies" translatable="false">White Lies</string>
+    <string name="artist_thelau" translatable="false">Thé Lau / The Scene</string>
 
     <!-- Sunday -->
     <string name="artist_arcticmonkeys" translatable="false">Arctic Monkeys</string>
@@ -28,6 +29,7 @@
     <string name="artist_johnnewman" translatable="false">John Newman</string>
     <string name="artist_portugaltheman" translatable="false">Portugal. The Man</string>
     <string name="artist_twentyonepilots" translatable="false">Twenty One Pilots</string>
+    <string name="artist_taymir" translatable="false">Taymir</string>
 
     <!-- Monday -->
     <string name="artist_metallica" translatable="false">Metallica</string>

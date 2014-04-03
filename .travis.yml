@@ -56,5 +56,4 @@ script:
   - TERM=dumb ./gradlew lint
 
 after_success:
-  - curl -X POST "https://www.notifymyandroid.com/publicapi/notify?apikey=${NMA_APIKEY}&application=Travis&event=Build Successful!&description=Travis build
-  succeeded"
+  - curl -X POST "https://www.notifymyandroid.com/publicapi/notify?apikey=${NMA_APIKEY}&application=Travis&event=Build Successful!&description=Travis build succeeded"

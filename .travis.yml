@@ -9,13 +9,11 @@ env:
 
 before_install:
 
-  
+
   
 install:
   - true
-script:
-  - TERM=dumb ./gradlew connectedCheck
-  - TERM=dumb ./gradlew lint
+
 
 after_success:
   - curl POST "https://www.notifymyandroid.com/publicapi/notify?apikey=${NMA_APIKEY}&application=Travis&event=Build Successful!&description=Travis build succeeded"

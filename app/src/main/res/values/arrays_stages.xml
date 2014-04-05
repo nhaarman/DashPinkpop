@@ -47,6 +47,8 @@
         <item>@string/artist_cleanbandit</item>
         <item>@string/artist_ghost</item>
         <item>@string/artist_youngthegiant</item>
+        <item>@string/artist_thelau</item>
+        <item>@string/artist_taymir</item>
     </string-array>
 
 </resources>

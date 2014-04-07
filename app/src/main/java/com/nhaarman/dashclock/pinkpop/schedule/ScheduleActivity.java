@@ -2,15 +2,22 @@ package com.nhaarman.dashclock.pinkpop.schedule;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 
 import com.nhaarman.dashclock.pinkpop.R;
+import com.nhaarman.dashclock.pinkpop.preferences.PreferencesActivity;
 
 public class ScheduleActivity extends FragmentActivity {
 
     private ViewPager mViewPager;
+    private PreferencesClickedBroadcastReceiver mPreferencesClickedBroadcastReceiver;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -27,13 +34,35 @@ public class ScheduleActivity extends FragmentActivity {
         mViewPager.setAdapter(schedulePagerAdapter);
         mViewPager.setOnPageChangeListener(new OnSchedulePageChangeListener());
 
-        ScheduleTabListener scheduleTabListener = new ScheduleTabListener();
+        ActionBar.TabListener scheduleTabListener = new ScheduleTabListener();
 
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.addTab(actionBar.newTab().setText(R.string.saturday).setTabListener(scheduleTabListener));
         actionBar.addTab(actionBar.newTab().setText(R.string.sunday).setTabListener(scheduleTabListener));
         actionBar.addTab(actionBar.newTab().setText(R.string.monday).setTabListener(scheduleTabListener));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter intentFilter = new IntentFilter(ScheduleFragment.EVENT_PREFERENCES_CLICKED);
+        mPreferencesClickedBroadcastReceiver = new PreferencesClickedBroadcastReceiver();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mPreferencesClickedBroadcastReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mPreferencesClickedBroadcastReceiver);
+    }
+
+    private class PreferencesClickedBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(final Context context, final Intent intent) {
+            startActivity(new Intent(context, PreferencesActivity.class));
+        }
     }
 
     private class OnSchedulePageChangeListener implements ViewPager.OnPageChangeListener {

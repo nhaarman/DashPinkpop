@@ -1,9 +1,14 @@
 package com.nhaarman.dashclock.pinkpop.schedule;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -12,6 +17,7 @@ import android.widget.TextView;
 import com.nhaarman.dashclock.pinkpop.R;
 import com.nhaarman.dashclock.pinkpop.artistinfo.ArtistInfo;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -22,6 +28,8 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 public class ScheduleFragment extends Fragment {
 
     private static final String ARGUMENT_ARTISTS = "com.nhaarman.dashclock.pinkpop.schedule.argument_artists";
+
+    public static final String EVENT_PREFERENCES_CLICKED = "com.nhaarman.dashclock.pinkpop.schedule.event_preferences_clicked";
 
     private StickyListHeadersListView mListView;
 
@@ -36,6 +44,12 @@ public class ScheduleFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         mListView = new StickyListHeadersListView(getActivity());
         mListView.setDivider(null);
@@ -46,9 +60,31 @@ public class ScheduleFragment extends Fragment {
     public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        String[] artists = getArguments().getStringArray(ARGUMENT_ARTISTS);
-        ArtistsListAdapter artistsListAdapter = new ArtistsListAdapter(getActivity(), artists);
+        Bundle arguments = getArguments();
+        String[] artists = arguments.getStringArray(ARGUMENT_ARTISTS);
+        StickyListHeadersAdapter artistsListAdapter = new ArtistsListAdapter(getActivity(), artists);
         mListView.setAdapter(artistsListAdapter);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_fragment_schedule, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        boolean result;
+        switch (item.getItemId()) {
+            case R.id.menu_fragment_schedule_preferences:
+                Intent intent = new Intent(EVENT_PREFERENCES_CLICKED);
+                LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+                result = true;
+                break;
+            default:
+                result = super.onOptionsItemSelected(item);
+        }
+        return result;
     }
 
     private static class ArtistsListAdapter extends BaseAdapter implements StickyListHeadersAdapter {
@@ -110,7 +146,7 @@ public class ScheduleFragment extends Fragment {
         }
     }
 
-    private static class ArtistsComparator implements Comparator<String> {
+    private static class ArtistsComparator implements Comparator<String>, Serializable {
 
         private final ArtistInfo mArtistInfo;
         private final StageComparator mStageComparator;
@@ -147,10 +183,8 @@ public class ScheduleFragment extends Fragment {
                 return -1;
             } else if (rightStage.equals(mMainStageString)) {
                 return 1;
-            } else if (leftStage.equals(m3FMStageString)) {
-                return -1;
             } else {
-                return 1;
+                return leftStage.equals(m3FMStageString) ? -1 : 1;
             }
         }
     }

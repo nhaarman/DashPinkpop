@@ -17,6 +17,8 @@
 
     <string name="day_artist_stage">%1$s: %2$s\n(%3$s)</string>
 
+    <string name="menu_preferences">Voorkeuren</string>
+
     <plurals name="days">
         <item quantity="one">%d dag</item>
         <item quantity="other">%d dagen</item>

@@ -15,7 +15,7 @@ import com.nhaarman.dashclock.pinkpop.dates.DefaultPinkpopDates;
 
 import org.joda.time.DateTime;
 
-class PreferencesFragment extends PreferenceFragment {
+public class PreferencesFragment extends PreferenceFragment {
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {

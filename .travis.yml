@@ -3,9 +3,10 @@ jdk: oraclejdk7
 
 env:
   matrix:
-    - ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
-    - ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
-    - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=sysimg-16 ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-17,sysimg-17 ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-18,sysimg-18 ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-19,sysimg-19 ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
 before_install:
 
   # Install base Android SDK
@@ -24,12 +25,10 @@ before_install:
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
   # Install required components.
-  # For a full list, run `android list sdk -a --extended`
-  # Note that sysimg-19 downloads only ARM, because only the first license query is accepted.
   - echo yes | android update sdk --filter platform-tools --no-ui --force > /dev/null
   - echo yes | android update sdk --all --filter build-tools-19.0.3 --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter android-19 --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter sysimg-19 --no-ui --force > /dev/null
+  - echo yes | android update sdk --filter $ANDROID_TARGET --no-ui --force > /dev/null
+  - echo yes | android update sdk --filter $ANDROID_SDKS --no-ui --force > /dev/null
   - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
   - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
 

@@ -3,15 +3,14 @@ package com.nhaarman.dashclock.pinkpop.schedule;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class SchedulePagerAdapter extends FragmentPagerAdapter {
+class SchedulePagerAdapter extends FragmentPagerAdapter {
 
     private final String[][] mArtistLists;
 
-    public SchedulePagerAdapter(final FragmentManager fm, final String[][] artistLists) {
+    SchedulePagerAdapter(final FragmentManager fm, final String[][] artistLists) {
         super(fm);
-        mArtistLists = artistLists;
+        mArtistLists = artistLists.clone();
     }
 
     @Override

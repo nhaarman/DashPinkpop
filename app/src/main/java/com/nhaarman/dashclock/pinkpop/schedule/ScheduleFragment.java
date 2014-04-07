@@ -27,10 +27,8 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class ScheduleFragment extends Fragment {
 
-    private static final String ARGUMENT_ARTISTS = "com.nhaarman.dashclock.pinkpop.schedule.argument_artists";
-
     public static final String EVENT_PREFERENCES_CLICKED = "com.nhaarman.dashclock.pinkpop.schedule.event_preferences_clicked";
-
+    private static final String ARGUMENT_ARTISTS = "com.nhaarman.dashclock.pinkpop.schedule.argument_artists";
     private StickyListHeadersListView mListView;
 
     public static ScheduleFragment newInstance(final String[] artists) {
@@ -148,7 +146,7 @@ public class ScheduleFragment extends Fragment {
 
     private static class ArtistsComparator implements Comparator<String>, Serializable {
 
-        private final ArtistInfo mArtistInfo;
+        private final transient ArtistInfo mArtistInfo;
         private final StageComparator mStageComparator;
 
         private ArtistsComparator(final Context context, final ArtistInfo artistInfo) {
@@ -157,15 +155,15 @@ public class ScheduleFragment extends Fragment {
         }
 
         @Override
-        public int compare(final String leftArtist, final String rightArtist) {
-            String leftStage = mArtistInfo.getPerformingStage(leftArtist);
-            String rightStage = mArtistInfo.getPerformingStage(rightArtist);
+        public int compare(final String lhs, final String rhs) {
+            String leftStage = mArtistInfo.getPerformingStage(lhs);
+            String rightStage = mArtistInfo.getPerformingStage(rhs);
 
-            return 100 * mStageComparator.compare(leftStage, rightStage) + leftArtist.compareTo(rightArtist);
+            return 100 * mStageComparator.compare(leftStage, rightStage) + lhs.compareTo(rhs);
         }
     }
 
-    private static class StageComparator implements Comparator<String> {
+    private static class StageComparator implements Comparator<String>, Serializable {
 
         private final String mMainStageString;
         private final String m3FMStageString;
@@ -176,16 +174,18 @@ public class ScheduleFragment extends Fragment {
         }
 
         @Override
-        public int compare(final String leftStage, final String rightStage) {
-            if (leftStage.equals(rightStage)) {
-                return 0;
-            } else if (leftStage.equals(mMainStageString)) {
-                return -1;
-            } else if (rightStage.equals(mMainStageString)) {
-                return 1;
+        public int compare(final String lhs, final String rhs) {
+            int result;
+            if (lhs.equals(rhs)) {
+                result = 0;
+            } else if (lhs.equals(mMainStageString)) {
+                result = -1;
+            } else if (rhs.equals(mMainStageString)) {
+                result = 1;
             } else {
-                return leftStage.equals(m3FMStageString) ? -1 : 1;
+                result = lhs.equals(m3FMStageString) ? -1 : 1;
             }
+            return result;
         }
     }
 }

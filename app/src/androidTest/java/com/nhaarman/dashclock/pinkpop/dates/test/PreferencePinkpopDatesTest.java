@@ -7,6 +7,7 @@ import com.nhaarman.dashclock.pinkpop.dates.PreferencePinkpopDates;
 import com.nhaarman.dashclock.pinkpop.preferences.Preferences;
 
 import org.joda.time.DateTime;
+import org.joda.time.ReadableInstant;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
@@ -15,7 +16,7 @@ import static org.junit.Assert.assertThat;
 public class PreferencePinkpopDatesTest extends AndroidTestCase {
 
     private static final long MILLIS_START = 1L;
-    private static final DateTime DATETIME_START = new DateTime(MILLIS_START);
+    private static final ReadableInstant DATETIME_START = new DateTime(MILLIS_START);
 
     private PreferencePinkpopDates mPreferencePinkpopDates;
 

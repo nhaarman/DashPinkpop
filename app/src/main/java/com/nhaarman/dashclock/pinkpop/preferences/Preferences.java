@@ -1,6 +1,5 @@
 package com.nhaarman.dashclock.pinkpop.preferences;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -14,10 +13,13 @@ import com.nhaarman.dashclock.pinkpop.displaystrategy.CountDownStrategy;
 import com.nhaarman.dashclock.pinkpop.displaystrategy.DisplayStrategy;
 
 import org.joda.time.DateTime;
+import org.joda.time.ReadableInstant;
 
 public class Preferences {
 
-    @SuppressLint("StringFormatMatches")
+    private Preferences() {
+    }
+
     public static DisplayStrategy getDisplayStrategy(final Context context) {
         DisplayStrategy result;
 
@@ -36,21 +38,9 @@ public class Preferences {
         return result;
     }
 
-    public static void setDisplayStrategy(final Context context, final int strategy) {
-        PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(context.getResources().getString(R.string.pref_displaystrategy), strategy).commit();
-    }
-
     private static PinkpopDates getPinkpopDates(final Context context) {
-        PinkpopDates result;
-
         DateTime prefStartDate = getStartDate(context);
-        if (prefStartDate == null) {
-            result = new DefaultPinkpopDates();
-        } else {
-            result = new PreferencePinkpopDates(context);
-        }
-
-        return result;
+        return prefStartDate == null ? new DefaultPinkpopDates() : new PreferencePinkpopDates(context);
     }
 
     public static DateTime getStartDate(final Context context) {
@@ -58,7 +48,7 @@ public class Preferences {
         return startDateMillis == -1 ? null : new DateTime(startDateMillis);
     }
 
-    public static void setStartDate(final Context context, final DateTime startDateTime) {
+    public static void setStartDate(final Context context, final ReadableInstant startDateTime) {
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         if (startDateTime == null) {
             editor.remove(context.getString(R.string.pref_start_datetime)).commit();

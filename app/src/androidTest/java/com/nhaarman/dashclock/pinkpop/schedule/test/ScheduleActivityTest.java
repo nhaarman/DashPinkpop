@@ -51,7 +51,7 @@ public class ScheduleActivityTest extends ActivityInstrumentationTestCase2<Sched
         Instrumentation.ActivityMonitor activityMonitor = mInstrumentation.addMonitor(PreferencesActivity.class.getName(), null, false);
         mInstrumentation.invokeMenuActionSync(mActivity, R.id.menu_fragment_schedule_preferences, 0);
 
-        Activity preferencesActivity = mInstrumentation.waitForMonitorWithTimeout(activityMonitor, 1000);
+        Activity preferencesActivity = mInstrumentation.waitForMonitorWithTimeout(activityMonitor, 5000);
         assertThat(preferencesActivity, is(not(nullValue())));
         assertThat(preferencesActivity, is(instanceOf(PreferencesActivity.class)));
         preferencesActivity.finish();

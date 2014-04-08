@@ -28,6 +28,7 @@ before_install:
   # Install required components.
   - echo yes | android update sdk --all --filter platform-tools --no-ui --force > /dev/null
   - echo yes | android update sdk --all --filter build-tools-19.0.3 --no-ui --force > /dev/null
+  - echo yes | android update sdk --all --filter android-19 --no-ui --force > /dev/null
   - echo yes | android update sdk --all --filter $ANDROID_TARGET --no-ui --force > /dev/null
   - echo yes | android update sdk --all --filter $ANDROID_SDKS --no-ui --force > /dev/null
   - echo yes | android update sdk --all --filter extra-android-support --no-ui --force > /dev/null

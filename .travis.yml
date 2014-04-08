@@ -8,12 +8,12 @@ env:
     - ANDROID_SDKS=sysimg-19            ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a
   global:
     - TERM=dumb
-    - COMPONENTS=extra-android-m2repository,build-tools-19.0.3,android-19,$ANDROID_SDKS
 
 before_install:
   # Install base Android SDK
   - sudo apt-get update -qq
   - sudo apt-get install -qq libstdc++6:i386 lib32z1
+  - export COMPONENTS=extra-android-m2repository,build-tools-19.0.3,android-19,$ANDROID_SDKS
   - curl -3L https://raw.github.com/embarkmobile/android-sdk-installer/version-1/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS
   - source ~/.android-sdk-installer/env
 

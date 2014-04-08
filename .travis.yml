@@ -37,5 +37,6 @@ install:
  - true
 
 script:
+  - sudo chmod +x gradlew
   - TERM=dumb ./gradlew connectedCheck
   - TERM=dumb ./gradlew lint

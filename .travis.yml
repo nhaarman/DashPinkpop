@@ -4,7 +4,7 @@ jdk: oraclejdk7
 env:
   matrix:
     - ANDROID_SDKS=sysimg-16 ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
-    - ANDROID_SDKS=sysimg-17 ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-17,sysimg-17 ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
     - ANDROID_SDKS=sysimg-18 ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
     - ANDROID_SDKS=sysimg-19 ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
 before_install:
@@ -25,13 +25,13 @@ before_install:
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
   # Install required components.
-  - echo yes | android update sdk --filter platform-tools --no-ui --force > /dev/null
-  - echo yes | android update sdk --all --filter build-tools-19.0.3 --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter android-19 --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter $ANDROID_TARGET --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter $ANDROID_SDKS --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
+  - echo yes | android update sdk --filter platform-tools --no-ui -all --force > /dev/null
+  - echo yes | android update sdk --all --filter build-tools-19.0.3 --no-ui -all --force > /dev/null
+  - echo yes | android update sdk --filter android-19 --no-ui -all --force > /dev/null
+  - echo yes | android update sdk --filter $ANDROID_TARGET --no-ui -all --force > /dev/null
+  - echo yes | android update sdk --filter $ANDROID_SDKS --no-ui -all --force > /dev/null
+  - echo yes | android update sdk --filter extra-android-support --no-ui -all --force > /dev/null
+  - echo yes | android update sdk --filter extra-android-m2repository --no-ui -all --force > /dev/null
 
   # Add dummy passwords
   - echo nhaarman_dashpinkpop_storePassword=dummy >> gradle.properties

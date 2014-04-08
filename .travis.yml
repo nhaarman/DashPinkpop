@@ -42,18 +42,14 @@ before_install:
   - echo nhaarman_dashpinkpop_keyPassword=dummy >> gradle.properties
   
   # Create and start emulator
-  - android list targets
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
   
 before_script:
   # Make sure the emulator has started before running tests
-  # - adb wait-for-device
   - chmod +x wait_for_emulator
   - ./wait_for_emulator
   
-install:
-  - true
 script:
   - TERM=dumb ./gradlew connectedCheck
   - TERM=dumb ./gradlew lint

@@ -42,12 +42,12 @@ script:
   - if [[ $LINT == 'true' ]]; then ./gradlew lint ; fi
 
 after_script:
-  - if [[ $LINT == 'true' ]]; then    cp ${TRAVIS_BUILD_DIR}/app/build/lint-results.html ${TRAVIS_BUILD_DIR}/lint-results.html ; fi
   - if [[ $LINT == 'true' ]]; then    git remote rm origin                                                                                                             ; fi
   - if [[ $LINT == 'true' ]]; then    git remote add origin ${GIT_ORIGIN}                                                                                              ; fi
   - if [[ $LINT == 'true' ]]; then    git config user.name ${GIT_NAME}                                                                                                 ; fi
   - if [[ $LINT == 'true' ]]; then    git config user.email ${GIT_EMAIL}                                                                                               ; fi
   - if [[ $LINT == 'true' ]]; then    git checkout ${TRAVIS_BRANCH}                                                                                                    ; fi
+  - if [[ $LINT == 'true' ]]; then    cp ${TRAVIS_BUILD_DIR}/app/build/lint-results.html ${TRAVIS_BUILD_DIR}/lint-results.html                                         ; fi
   - if [[ $LINT == 'true' ]]; then    git add lint-results.html                                                                                                        ; fi
   - if [[ $LINT == 'true' ]]; then    git commit -m "Updated lint-results [skip ci]"                                                                                   ; fi
   - if [[ $LINT == 'true' ]]; then    git push origin ${TRAVIS_BRANCH}                                                                                                 ; fi

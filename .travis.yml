@@ -3,8 +3,8 @@ jdk: oraclejdk7
 
 env:
   matrix:
-    - ANDROID_SDKS=sysimg-17 ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
-    - ANDROID_SDKS=sysimg-18 ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-17,sysimg-17 ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android18,sysimg-18 ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
     - ANDROID_SDKS=sysimg-19 ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
   global:
     - SDK_VERSION=22.6.2
@@ -15,7 +15,7 @@ env:
 before_install:
   - export TERM=dumb
   - sudo apt-get install -qq libstdc++6:i386 lib32z1
-  - export COMPONENTS=build-tools-$BUILD_TOOLS_VERSION,$LATEST_TARGET,extra-android-m2repository,$ANDROID_SDKS,$ANDROID_TARGET,$ANDROID_ABI
+  - export COMPONENTS=extra-android-m2repository,build-tools-$BUILD_TOOLS_VERSION,$LATEST_TARGET,$ANDROID_SDKS
   - curl -3L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS && source ~/.android-sdk-installer/env
 
   # Add dummy passwords

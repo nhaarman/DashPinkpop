@@ -42,7 +42,7 @@ script:
   - if [[ $LINT == 'true' ]]; then ./gradlew lint ; fi
 
 after_script:
-  - if [[ $LINT == 'true' ]]; then    cp /home/travis/build/nhaarman/DashPinkpop/app/build/lint-results.html /home/travis/build/nhaarman/DashPinkpop/lint-results.html ; fi
+  - if [[ $LINT == 'true' ]]; then    cp ${TRAVIS_BUILD_DIR}/app/build/lint-results.html ${TRAVIS_BUILD_DIR}/lint-results.html ; fi
   - if [[ $LINT == 'true' ]]; then    git remote rm origin                                                                                                             ; fi
   - if [[ $LINT == 'true' ]]; then    git remote add origin ${GIT_ORIGIN}                                                                                              ; fi
   - if [[ $LINT == 'true' ]]; then    git config user.name ${GIT_NAME}                                                                                                 ; fi

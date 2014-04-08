@@ -16,7 +16,7 @@ before_install:
   - sudo apt-get install -qq libstdc++6:i386 lib32z1
   - export TERM=dumb
   - export COMPONENTS=extra-android-m2repository,$BUILD_TOOLS,$LATEST_TARGET,$ANDROID_SDKS
-  - curl -3L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS
+  - curl -3L https://raw.github.com/embarkmobile/android-sdk-installer/version-1/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS
   - source ~/.android-sdk-installer/env
 
 
@@ -41,3 +41,6 @@ script:
   - sudo chmod +x gradlew
   - TERM=dumb ./gradlew connectedCheck
   - TERM=dumb ./gradlew lint
+
+notifications:
+  email: false

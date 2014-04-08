@@ -6,7 +6,8 @@ env:
     - ANDROID_SDKS=sysimg-17 ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
     - ANDROID_SDKS=sysimg-18 ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
     - ANDROID_SDKS=sysimg-19 ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
-  - GRADLE_VERSION=1.11
+  global:
+    - GRADLE_VERSION=1.11
 before_install:
 
   # Install base Android SDK

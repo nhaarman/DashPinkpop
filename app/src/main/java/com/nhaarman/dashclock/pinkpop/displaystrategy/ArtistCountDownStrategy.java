@@ -12,7 +12,10 @@ public class ArtistCountDownStrategy extends CountDownStrategy {
 
     private static final String PREF_LASTARTISTCHANGE = "last_artist_change";
     private static final String PREF_LASTARTIST = "last_artist";
-    private static final int ONE_HOUR = 60 * 60 * 1000;
+
+    private static final int SIXTY_SECONDS = 60;
+    private static final int SIXTY_MINUTES = 60;
+    private static final int ONE_HOUR = SIXTY_MINUTES * SIXTY_SECONDS * 1000;
 
     private final Context mContext;
     private final ArtistInfo mArtistInfo;

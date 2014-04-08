@@ -2,16 +2,24 @@
 <manifest
     package="com.nhaarman.dashclock.pinkpop"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="256">
+    android:versionCode="338">
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/Theme.Dashpinkpop">
+        <activity
+            android:name="com.nhaarman.dashclock.pinkpop.schedule.ScheduleActivity"
+            android:exported="true"
+            android:label="@string/title_activity_schedule">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <service
-            android:name=".PinkPopExtension"
+            android:name="com.nhaarman.dashclock.pinkpop.PinkPopExtension"
             android:icon="@drawable/icon"
             android:label="@string/extension_title"
             android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
@@ -34,13 +42,13 @@
         </service>
 
         <activity
-            android:name=".preferences.PreferencesActivity"
+            android:name="com.nhaarman.dashclock.pinkpop.preferences.PreferencesActivity"
             android:exported="true" />
 
         <provider
-            android:name=".UpdateExtensionContentProvider"
+            android:name="com.nhaarman.dashclock.pinkpop.UpdateExtensionContentProvider"
             android:authorities="@string/authority"
             android:exported="false" />
-
     </application>
+
 </manifest>

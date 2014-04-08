@@ -7,7 +7,10 @@ apply from: 'buildVersion.gradle'
 dependencies {
     compile 'com.google.android.apps.dashclock:dashclock-api:+'
     compile 'joda-time:joda-time:2.3@jar'
+    compile 'com.android.support:support-v4:+'
+    compile 'se.emilsjolander:stickylistheaders:2.2.+'
 
+    /* Testing libraries */
     androidTestCompile('org.mockito:mockito-core:1.9.5') { exclude group: 'org.hamcrest' }
     androidTestCompile('com.google.dexmaker:dexmaker-mockito:1.1') { exclude group: 'org.hamcrest' }
     androidTestCompile('junit:junit:4.11') { exclude group: 'org.hamcrest' }

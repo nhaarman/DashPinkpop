@@ -8,8 +8,19 @@ public class ArtistInfo {
 
     private final Resources mResources;
 
-    public ArtistInfo(Resources resources) {
+    public ArtistInfo(final Resources resources) {
         mResources = resources;
+    }
+
+    @SuppressWarnings("QuestionableName")
+    private static boolean isContainedIn(final String string, final String[] array) {
+        boolean found = false;
+        for (int i = 0; i < array.length && !found; i++) {
+            if (array[i].equals(string)) {
+                found = true;
+            }
+        }
+        return found;
     }
 
     public String getRandomArtist() {
@@ -74,16 +85,6 @@ public class ArtistInfo {
     private boolean isBrandStageArtist(final String artist) {
         String[] artists = mResources.getStringArray(R.array.artists_brandstage);
         return isContainedIn(artist, artists);
-    }
-
-
-    private boolean isContainedIn(final String string, final String[] array) {
-        for (String a : array) {
-            if (a.equals(string)) {
-                return true;
-            }
-        }
-        return false;
     }
 
 }

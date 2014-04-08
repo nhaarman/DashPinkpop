@@ -5,6 +5,8 @@
     <string name="extension_title">Pinkpop 2014</string>
     <string name="extension_description">Geeft de tijd weer tot Pinkpop 2014</string>
 
+    <string name="title_activity_schedule">@string/extension_title</string>
+
     <string name="time_left">%1$s%2$s%3$s te gaan tot Pinkpop 2014</string>
     <string name="active">Pinkpop 2014 is begonnen!</string>
     <string name="finished">Pinkpop 2014 is afgelopen</string>
@@ -14,6 +16,8 @@
     <string name="monday">Maandag</string>
 
     <string name="day_artist_stage">%1$s: %2$s\n(%3$s)</string>
+
+    <string name="menu_preferences">Voorkeuren</string>
 
     <plurals name="days">
         <item quantity="one">%d dag</item>

@@ -3,7 +3,6 @@ package com.nhaarman.dashclock.pinkpop.displaystrategy.test;
 import android.content.res.Configuration;
 import android.test.AndroidTestCase;
 
-import com.nhaarman.dashclock.pinkpop.dates.PreferencePinkpopDates;
 import com.nhaarman.dashclock.pinkpop.displaystrategy.CountDownStrategy;
 
 import org.joda.time.DateTime;

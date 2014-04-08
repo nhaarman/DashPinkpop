@@ -3,51 +3,54 @@ jdk: oraclejdk7
 
 env:
   matrix:
-    - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-17,sysimg-17 ANDROID_TARGET=android-17 ANDROID_ABI=armeabi-v7a LINT=false
+    - ANDROID_SDKS=android-18,sysimg-18 ANDROID_TARGET=android-18 ANDROID_ABI=armeabi-v7a LINT=false
+    - ANDROID_SDKS=sysimg-19            ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a LINT=true
+  global:
+    - TERM=dumb
+    - secure: "jeOCUiNXbmxPiUP7TUBaGWWZCDthl0u9LuWPdPebK6VkCKIuqp+RmlmVHJmiOFvSRgMIIPYPzUtuIUkqq/PYt4Xio57S56NEEw70DZQpufGmXGE6M+P1yUPXt4gjODjgWAC1uveu06GrwO9pOard63rN8TjpCih/acrAZ6Kxb1o="
+    - secure: "c8YjYXzPOxs/uHTMY3yxlD7zK3x5Arii561IkX5Yi6ZBW4/U4VcXr6/pv3Ptqm4qiej4ngd5SFawb3gqJDxgDotK0emg09wA0j8ly7V0/xqPLF9TbdQrGxFLH1EUlGik4EsPOkmlVWtMTtMxA6xviVslnr2VM+M/kQhoIN8JKdk="
+
 before_install:
-
   # Install base Android SDK
-  # 
-  - sudo chmod +x gradlew
   - sudo apt-get update -qq
-  - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch > /dev/null; fi
-  - wget http://services.gradle.org/distributions/gradle-1.9-bin.zip
-  - unzip -qq gradle-1.9-bin.zip
-# Having GRADLE_HOME property will make Travis CI use it for build
-  - export GRADLE_HOME=$PWD/gradle-1.9
-  - export PATH=$GRADLE_HOME/bin:$PATH
-  - wget http://dl.google.com/android/android-sdk_r22.3-linux.tgz
-  - tar xzf android-sdk_r22.3-linux.tgz
-  - export ANDROID_HOME=$PWD/android-sdk-linux
-  - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+  - sudo apt-get install -qq libstdc++6:i386 lib32z1 expect
+  - export COMPONENTS=extra-android-m2repository,build-tools-19.0.3,android-19,$ANDROID_SDKS
+  - curl -3L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS
+  - source ~/.android-sdk-installer/env
 
-  # Install required components.
-  # For a full list, run `android list sdk -a --extended`
-  # Note that sysimg-19 downloads only ARM, because only the first license query is accepted.
-  - echo yes | android update sdk --filter platform-tools --no-ui --force > /dev/null
-  - echo yes | android update sdk --all --filter build-tools-19.0.3 --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter android-19 --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter sysimg-19 --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
+  # Create and start emulator
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
 
   # Add dummy passwords
   - echo nhaarman_dashpinkpop_storePassword=dummy >> gradle.properties
   - echo nhaarman_dashpinkpop_keyAlias=dummy >> gradle.properties
   - echo nhaarman_dashpinkpop_keyPassword=dummy >> gradle.properties
   
-  # Create and start emulator
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
-  
 before_script:
   # Make sure the emulator has started before running tests
-  # - adb wait-for-device
-  - chmod +x wait_for_emulator
-  - ./wait_for_emulator
-  
+  - wait_for_emulator
+
 install:
-  - true
+ - true
+
 script:
-  - TERM=dumb ./gradlew connectedCheck
-  - TERM=dumb ./gradlew lint
+  - sudo chmod +x gradlew
+  - ./gradlew connectedCheck
+
+  - if [[ $LINT == 'true' ]]; then ./gradlew lint ; fi
+
+after_script:
+  - if [[ $LINT == 'true' ]]; then    git remote rm origin                                                                                                             ; fi
+  - if [[ $LINT == 'true' ]]; then    git remote add origin ${GIT_ORIGIN}                                                                                              ; fi
+  - if [[ $LINT == 'true' ]]; then    git config user.name ${GIT_NAME}                                                                                                 ; fi
+  - if [[ $LINT == 'true' ]]; then    git config user.email ${GIT_EMAIL}                                                                                               ; fi
+  - if [[ $LINT == 'true' ]]; then    git checkout ${TRAVIS_BRANCH}                                                                                                    ; fi
+  - if [[ $LINT == 'true' ]]; then    cp ${TRAVIS_BUILD_DIR}/app/build/lint-results.html ${TRAVIS_BUILD_DIR}/lint-results.html                                         ; fi
+  - if [[ $LINT == 'true' ]]; then    git add lint-results.html                                                                                                        ; fi
+  - if [[ $LINT == 'true' ]]; then    git commit -m "Updated lint-results [skip ci]"                                                                                   ; fi
+  - if [[ $LINT == 'true' ]]; then    git push origin ${TRAVIS_BRANCH}                                                                                                 ; fi
+
+notifications:
+  email: false

@@ -7,7 +7,7 @@ env:
     - ANDROID_SDKS=sysimg-18 ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
     - ANDROID_SDKS=sysimg-19 ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
   global:
-    - SDK_VERSION=22.3
+    - SDK_VERSION=22.6.2
     - GRADLE_VERSION=1.11
     - BUILD_TOOLS_VERSION=19.0.3
     - LATEST_TARGET=android-19
@@ -49,7 +49,7 @@ before_script:
   # Make sure the emulator has started before running tests
   - chmod +x wait_for_emulator
   - ./wait_for_emulator
-  
+
 script:
   - TERM=dumb ./gradlew connectedCheck
   - TERM=dumb ./gradlew lint

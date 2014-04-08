@@ -3,10 +3,10 @@ jdk: oraclejdk7
 
 env:
   matrix:
-    - ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
-    - ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
-    - ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
-    - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=sysimg-17 ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=sysimg-18 ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=sysimg-19 ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+  - GRADLE_VERSION=1.11
 before_install:
 
   # Install base Android SDK
@@ -14,10 +14,10 @@ before_install:
   - sudo chmod +x gradlew
   - sudo apt-get update -qq
   - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch > /dev/null; fi
-  - wget http://services.gradle.org/distributions/gradle-1.9-bin.zip
-  - unzip -qq gradle-1.9-bin.zip
+  - wget http://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip
+  - unzip -qq gradle-$GRADLE_VERSION-bin.zip
 # Having GRADLE_HOME property will make Travis CI use it for build
-  - export GRADLE_HOME=$PWD/gradle-1.9
+  - export GRADLE_HOME=$PWD/gradle-$GRADLE_VERSION
   - export PATH=$GRADLE_HOME/bin:$PATH
   - wget http://dl.google.com/android/android-sdk_r22.3-linux.tgz
   - tar xzf android-sdk_r22.3-linux.tgz
@@ -28,6 +28,7 @@ before_install:
   - echo yes | android update sdk --all --filter platform-tools --no-ui --force > /dev/null
   - echo yes | android update sdk --all --filter build-tools-19.0.3 --no-ui --force > /dev/null
   - echo yes | android update sdk --all --filter $ANDROID_TARGET --no-ui --force > /dev/null
+  - echo yes | android update sdk --all --filter $ANDROID_SDKS --no-ui --force > /dev/null
   - echo yes | android update sdk --all --filter extra-android-support --no-ui --force > /dev/null
   - echo yes | android update sdk --all --filter extra-android-m2repository --no-ui --force > /dev/null
 

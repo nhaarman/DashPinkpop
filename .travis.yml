@@ -7,16 +7,19 @@ env:
     - ANDROID_SDKS=android18,sysimg-18 ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
     - ANDROID_SDKS=sysimg-19 ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
   global:
-    - SDK_VERSION=22.6.2
-    - GRADLE_VERSION=1.11
-    - BUILD_TOOLS_VERSION=19.0.3
+    - BUILD_TOOLS=build-tools-19.0.3
     - LATEST_TARGET=android-19
 
 before_install:
-  - export TERM=dumb
+# Install base Android SDK
+  - sudo apt-get update -qq
   - sudo apt-get install -qq libstdc++6:i386 lib32z1
-  - export COMPONENTS=extra-android-m2repository,build-tools-$BUILD_TOOLS_VERSION,$LATEST_TARGET,$ANDROID_SDKS
-  - curl -3L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS && source ~/.android-sdk-installer/env
+  - export TERM=dumb
+  - export COMPONENTS=extra-android-m2repository,$BUILD_TOOLS,$LATEST_TARGET,$ANDROID_SDKS
+  - curl -3L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS
+  - source ~/.android-sdk-installer/env
+
+
 
   # Add dummy passwords
   - echo nhaarman_dashpinkpop_storePassword=dummy >> gradle.properties

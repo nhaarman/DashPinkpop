@@ -35,7 +35,7 @@ install:
  - true
 
 script:
-  #- sudo chmod +x gradlew
+  - sudo chmod +x gradlew
   #- ./gradlew connectedCheck
 
   - if [[ $LINT == 'true' ]]; then ./gradlew lint ; fi

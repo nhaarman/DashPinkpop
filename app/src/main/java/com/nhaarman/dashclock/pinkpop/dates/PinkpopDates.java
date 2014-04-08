@@ -4,8 +4,8 @@ import org.joda.time.DateTime;
 
 public interface PinkpopDates {
 
-    public DateTime getStartDateTime();
+    DateTime getStartDateTime();
 
-    public DateTime getEndDateTime();
+    DateTime getEndDateTime();
 
 }

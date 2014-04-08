@@ -8,8 +8,6 @@ import com.nhaarman.dashclock.pinkpop.dates.PinkpopDates;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.Hours;
-import org.joda.time.Minutes;
 import org.joda.time.Period;
 
 public class CountDownStrategy implements DisplayStrategy {
@@ -43,10 +41,8 @@ public class CountDownStrategy implements DisplayStrategy {
 
         if (startDateTime.isAfterNow()) {
             result = generateTimeLeftString(DateTime.now().withSecondOfMinute(0).withMillisOfSecond(0), startDateTime);
-        } else if (mPinkpopDates.getEndDateTime().isAfterNow()) {
-            result = mContext.getString(R.string.active);
         } else {
-            result = mContext.getString(R.string.finished);
+            result = mPinkpopDates.getEndDateTime().isAfterNow() ? mContext.getString(R.string.active) : mContext.getString(R.string.finished);
         }
 
         return result;

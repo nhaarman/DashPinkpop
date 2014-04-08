@@ -11,13 +11,17 @@ import com.google.android.apps.dashclock.api.DashClockExtension;
 import com.google.android.apps.dashclock.api.ExtensionData;
 import com.nhaarman.dashclock.pinkpop.displaystrategy.DisplayStrategy;
 import com.nhaarman.dashclock.pinkpop.preferences.Preferences;
+import com.nhaarman.dashclock.pinkpop.schedule.ScheduleActivity;
 
 public class PinkPopExtension extends DashClockExtension {
 
     private static final String CONTENT = "content://";
 
-    private static final String WEB_URL = "http://www.pinkpop.nl";
     private MyBroadcastReceiver mReceiver;
+
+    private static Intent createClickIntent(final Context context) {
+        return new Intent(context, ScheduleActivity.class);
+    }
 
     @Override
     protected void onInitialize(final boolean isReconnect) {
@@ -36,16 +40,12 @@ public class PinkPopExtension extends DashClockExtension {
         data.status(displayStrategy.getStatus());
         data.expandedTitle(displayStrategy.getExpandedTitle());
         data.expandedBody(displayStrategy.getExpandedBody());
-        data.clickIntent(createClickIntent());
+        data.clickIntent(createClickIntent(this));
 
         publishUpdate(data);
 
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_TIME_TICK);
         registerReceiver(mReceiver, intentFilter);
-    }
-
-    private static Intent createClickIntent() {
-        return new Intent(Intent.ACTION_VIEW, Uri.parse(WEB_URL));
     }
 
     private static class MyBroadcastReceiver extends BroadcastReceiver {

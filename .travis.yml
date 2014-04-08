@@ -39,5 +39,9 @@ script:
 
   - if [[ $LINT == 'true' ]]; then ./gradlew lint ; fi
 
+after_succes:
+  - if [[ $LINT == 'true' ]]; then cp /home/travis/build/nhaarman/DashPinkpop/app/build/lint-results.html /home/travis/build/nhaarman/DashPinkpop/app/lint-results.html ; fi
+  - if [[ $LINT == 'true' ]]; then git commit -a -m "Updated lint-results [skip ci]" ; fi
+
 notifications:
   email: false

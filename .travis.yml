@@ -22,7 +22,7 @@ before_install:
 
   # Create and start emulator
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI --skin $SKIN
-  - emulator -avd test -no-skin -no-audio -no-window &
+  - emulator -avd test -no-audio -no-window &
 
   # Add dummy passwords
   - echo nhaarman_dashpinkpop_storePassword=dummy >> gradle.properties

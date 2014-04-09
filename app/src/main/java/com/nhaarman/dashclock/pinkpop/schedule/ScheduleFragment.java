@@ -41,11 +41,6 @@ public class ScheduleFragment extends Fragment {
         return scheduleFragment;
     }
 
-    @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
@@ -62,27 +57,6 @@ public class ScheduleFragment extends Fragment {
         String[] artists = arguments.getStringArray(ARGUMENT_ARTISTS);
         StickyListHeadersAdapter artistsListAdapter = new ArtistsListAdapter(getActivity(), artists);
         mListView.setAdapter(artistsListAdapter);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_fragment_schedule, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        boolean result;
-        switch (item.getItemId()) {
-            case R.id.menu_fragment_schedule_preferences:
-                Intent intent = new Intent(EVENT_PREFERENCES_CLICKED);
-                LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
-                result = true;
-                break;
-            default:
-                result = super.onOptionsItemSelected(item);
-        }
-        return result;
     }
 
     private static class ArtistsListAdapter extends BaseAdapter implements StickyListHeadersAdapter {

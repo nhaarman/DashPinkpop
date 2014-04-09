@@ -5,10 +5,13 @@ import android.app.Instrumentation;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.test.ActivityInstrumentationTestCase2;
+import android.view.View;
 
 import com.nhaarman.dashclock.pinkpop.R;
 import com.nhaarman.dashclock.pinkpop.preferences.PreferencesActivity;
 import com.nhaarman.dashclock.pinkpop.schedule.ScheduleActivity;
+
+import org.junit.Assert;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -28,6 +31,7 @@ public class ScheduleActivityTest extends ActivityInstrumentationTestCase2<Sched
     private ScheduleActivity mActivity;
 
     private ViewPager mViewPager;
+    private View mSaturdayFragmentHolder;
 
     public ScheduleActivityTest() {
         super(ScheduleActivity.class);
@@ -39,12 +43,20 @@ public class ScheduleActivityTest extends ActivityInstrumentationTestCase2<Sched
         mInstrumentation = getInstrumentation();
         mActivity = getActivity();
         mViewPager = (ViewPager) mActivity.findViewById(R.id.activity_schedule_viewpager);
+        mSaturdayFragmentHolder = mActivity.findViewById(R.id.activity_schedule_saturdayfragmentholder);
     }
 
     public void testInitialization() {
-        assertThat(mViewPager, is(not(nullValue())));
-        assertThat(mViewPager.getAdapter(), is(not(nullValue())));
-        assertThat(mViewPager.getAdapter().getCount(), is(equalTo(3)));
+        Assert.assertTrue(mViewPager != null ^ mSaturdayFragmentHolder != null);
+
+        if (mViewPager != null) {
+            assertThat(mViewPager.getAdapter(), is(not(nullValue())));
+            assertThat(mViewPager.getAdapter().getCount(), is(equalTo(3)));
+        } else {
+            assertThat(mActivity.getSupportFragmentManager().findFragmentById(R.id.activity_schedule_saturdayfragmentholder), is(not(nullValue())));
+            assertThat(mActivity.getSupportFragmentManager().findFragmentById(R.id.activity_schedule_sundayfragmentholder), is(not(nullValue())));
+            assertThat(mActivity.getSupportFragmentManager().findFragmentById(R.id.activity_schedule_mondayfragmentholder), is(not(nullValue())));
+        }
     }
 
     public void testStartPreferencesActivity() {
@@ -59,44 +71,46 @@ public class ScheduleActivityTest extends ActivityInstrumentationTestCase2<Sched
 
     @SuppressWarnings("JUnitTestMethodWithNoAssertions")
     public void testViewPagerSelection() throws InterruptedException {
-        final Object lock = new Object();
+        if (mViewPager != null) {
+            final Object lock = new Object();
 
-        mInstrumentation.waitForIdleSync();
+            mInstrumentation.waitForIdleSync();
 
-        synchronized (lock) {
-            mActivity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    final Handler handler = new Handler();
-                    mViewPager.setCurrentItem(1);
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mViewPager.setCurrentItem(2);
+            synchronized (lock) {
+                mActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final Handler handler = new Handler();
+                        mViewPager.setCurrentItem(1);
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mViewPager.setCurrentItem(2);
 
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mViewPager.setCurrentItem(1);
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mViewPager.setCurrentItem(1);
 
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            mViewPager.setCurrentItem(0);
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                mViewPager.setCurrentItem(0);
 
-                                            synchronized (lock) {
-                                                lock.notifyAll();
+                                                synchronized (lock) {
+                                                    lock.notifyAll();
+                                                }
                                             }
-                                        }
-                                    }, DELAY_MILLIS);
-                                }
-                            }, DELAY_MILLIS);
-                        }
-                    }, DELAY_MILLIS);
-                }
-            });
+                                        }, DELAY_MILLIS);
+                                    }
+                                }, DELAY_MILLIS);
+                            }
+                        }, DELAY_MILLIS);
+                    }
+                });
 
-            lock.wait(WAIT_MILLIS);
+                lock.wait(WAIT_MILLIS);
+            }
         }
     }
 }

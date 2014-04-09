@@ -6,20 +6,34 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 class SchedulePagerAdapter extends FragmentPagerAdapter {
 
-    private final String[][] mArtistLists;
+    private final Schedule mSchedule;
 
-    SchedulePagerAdapter(final FragmentManager fm, final String[][] artistLists) {
+    SchedulePagerAdapter(final FragmentManager fm, final Schedule schedule) {
         super(fm);
-        mArtistLists = artistLists.clone();
+        mSchedule = schedule;
     }
 
     @Override
     public int getCount() {
-        return mArtistLists.length;
+        return mSchedule.getNumberOfDays();
     }
 
     @Override
     public Fragment getItem(final int position) {
-        return ScheduleFragment.newInstance(mArtistLists[position]);
+        String[] artists;
+        switch (position) {
+            case 0:
+                artists = mSchedule.getSaturdayArtists();
+                break;
+            case 1:
+                artists = mSchedule.getSundayArtists();
+                break;
+            case 2:
+                artists = mSchedule.getMondayArtists();
+                break;
+            default:
+                throw new IllegalArgumentException("Unexpected day: " + position);
+        }
+        return ScheduleFragment.newInstance(artists);
     }
 }

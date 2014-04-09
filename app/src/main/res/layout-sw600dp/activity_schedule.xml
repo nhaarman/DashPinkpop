@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.nhaarman.dashclock.pinkpop.schedule.MultiPaneSchedulePresenter
+    android:id="@+id/activity_schedule_presenter"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
@@ -82,4 +84,4 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
-</LinearLayout>
+</com.nhaarman.dashclock.pinkpop.schedule.MultiPaneSchedulePresenter>

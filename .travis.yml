@@ -3,9 +3,10 @@ jdk: oraclejdk7
 
 env:
   matrix:
-    - ANDROID_SDKS=android-17,sysimg-17 ANDROID_TARGET=android-17 ANDROID_ABI=armeabi-v7a LINT=false
-    - ANDROID_SDKS=android-18,sysimg-18 ANDROID_TARGET=android-18 ANDROID_ABI=armeabi-v7a LINT=false
-    - ANDROID_SDKS=sysimg-19            ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a LINT=true
+    - ANDROID_SDKS=android-17,sysimg-17 ANDROID_TARGET=android-17 ANDROID_ABI=armeabi-v7a SKIN=WVGA800 LINT=false
+    - ANDROID_SDKS=android-18,sysimg-18 ANDROID_TARGET=android-18 ANDROID_ABI=armeabi-v7a SKIN=WVGA800 LINT=false
+    - ANDROID_SDKS=sysimg-19            ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a SKIN=WVGA800 LINT=false
+    - ANDROID_SDKS=sysimg-19            ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a SKIN=WXGA800 LINT=true
   global:
     - TERM=dumb
     - secure: "jeOCUiNXbmxPiUP7TUBaGWWZCDthl0u9LuWPdPebK6VkCKIuqp+RmlmVHJmiOFvSRgMIIPYPzUtuIUkqq/PYt4Xio57S56NEEw70DZQpufGmXGE6M+P1yUPXt4gjODjgWAC1uveu06GrwO9pOard63rN8TjpCih/acrAZ6Kxb1o="
@@ -20,8 +21,8 @@ before_install:
   - source ~/.android-sdk-installer/env
 
   # Create and start emulator
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI --skin $SKIN
+  - emulator -avd test -no-audio -no-window &
 
   # Add dummy passwords
   - echo nhaarman_dashpinkpop_storePassword=dummy >> gradle.properties
@@ -40,17 +41,6 @@ script:
   - ./gradlew connectedCheck
 
   - if [[ $LINT == 'true' ]]; then ./gradlew lint ; fi
-
-after_script:
-  - if [[ $LINT == 'true' ]]; then    git remote rm origin                                                                                                             ; fi
-  - if [[ $LINT == 'true' ]]; then    git remote add origin ${GIT_ORIGIN}                                                                                              ; fi
-  - if [[ $LINT == 'true' ]]; then    git config user.name ${GIT_NAME}                                                                                                 ; fi
-  - if [[ $LINT == 'true' ]]; then    git config user.email ${GIT_EMAIL}                                                                                               ; fi
-  - if [[ $LINT == 'true' ]]; then    git checkout ${TRAVIS_BRANCH}                                                                                                    ; fi
-  - if [[ $LINT == 'true' ]]; then    cp ${TRAVIS_BUILD_DIR}/app/build/lint-results.html ${TRAVIS_BUILD_DIR}/lint-results.html                                         ; fi
-  - if [[ $LINT == 'true' ]]; then    git add lint-results.html                                                                                                        ; fi
-  - if [[ $LINT == 'true' ]]; then    git commit -m "Updated lint-results [skip ci]"                                                                                   ; fi
-  - if [[ $LINT == 'true' ]]; then    git push origin ${TRAVIS_BRANCH}                                                                                                 ; fi
 
 notifications:
   email: false

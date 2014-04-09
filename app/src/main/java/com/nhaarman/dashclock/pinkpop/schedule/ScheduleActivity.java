@@ -6,34 +6,37 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.nhaarman.dashclock.pinkpop.R;
 import com.nhaarman.dashclock.pinkpop.preferences.PreferencesActivity;
 
 public class ScheduleActivity extends FragmentActivity {
 
-    private ViewPager mViewPager;
-    private PreferencesClickedBroadcastReceiver mPreferencesClickedBroadcastReceiver;
+    private SchedulePresenter mPresenter;
+
+    private SchedulePageSelectedBroadcastReceiver mSchedulePageSelectedBroadcastReceiver;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        String[][] artistLists = new String[3][];
-        artistLists[0] = getResources().getStringArray(R.array.artists_saturday);
-        artistLists[1] = getResources().getStringArray(R.array.artists_sunday);
-        artistLists[2] = getResources().getStringArray(R.array.artists_monday);
+        mPresenter = (SchedulePresenter) findViewById(R.id.activity_schedule_presenter);
+        mPresenter.setSchedule(Schedule.createSchedule(getResources()), getSupportFragmentManager());
 
-        mViewPager = (ViewPager) findViewById(R.id.activity_schedule_viewpager);
-        SchedulePagerAdapter schedulePagerAdapter = new SchedulePagerAdapter(getSupportFragmentManager(), artistLists);
-        mViewPager.setAdapter(schedulePagerAdapter);
-        mViewPager.setOnPageChangeListener(new OnSchedulePageChangeListener());
+        if (mPresenter.hasTabs()) {
+            setupTabs();
+        }
+    }
 
+    private void setupTabs() {
         ActionBar.TabListener scheduleTabListener = new ScheduleTabListener();
 
         ActionBar actionBar = getActionBar();
@@ -46,46 +49,42 @@ public class ScheduleActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        IntentFilter intentFilter = new IntentFilter(ScheduleFragment.EVENT_PREFERENCES_CLICKED);
-        mPreferencesClickedBroadcastReceiver = new PreferencesClickedBroadcastReceiver();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mPreferencesClickedBroadcastReceiver, intentFilter);
+        IntentFilter filter = new IntentFilter(ScheduleIntent.ACTION_PAGE_SELECTED);
+        mSchedulePageSelectedBroadcastReceiver = new SchedulePageSelectedBroadcastReceiver();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mSchedulePageSelectedBroadcastReceiver, filter);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mPreferencesClickedBroadcastReceiver);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mSchedulePageSelectedBroadcastReceiver);
     }
 
-    private class PreferencesClickedBroadcastReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(final Context context, final Intent intent) {
-            startActivity(new Intent(context, PreferencesActivity.class));
-        }
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_fragment_schedule, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
-    private class OnSchedulePageChangeListener implements ViewPager.OnPageChangeListener {
-
-        @Override
-        public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        boolean result;
+        switch (item.getItemId()) {
+            case R.id.menu_fragment_schedule_preferences:
+                startActivity(new Intent(this, PreferencesActivity.class));
+                result = true;
+                break;
+            default:
+                result = super.onOptionsItemSelected(item);
         }
-
-        @Override
-        public void onPageSelected(final int position) {
-            getActionBar().setSelectedNavigationItem(position);
-        }
-
-        @Override
-        public void onPageScrollStateChanged(final int state) {
-        }
+        return result;
     }
 
     private class ScheduleTabListener implements ActionBar.TabListener {
 
         @Override
         public void onTabSelected(final ActionBar.Tab tab, final FragmentTransaction ft) {
-            mViewPager.setCurrentItem(getActionBar().getSelectedNavigationIndex());
+            mPresenter.onTabSelected(getActionBar().getSelectedNavigationIndex());
         }
 
         @Override
@@ -94,7 +93,15 @@ public class ScheduleActivity extends FragmentActivity {
 
         @Override
         public void onTabReselected(final ActionBar.Tab tab, final FragmentTransaction ft) {
+        }
+    }
 
+    private class SchedulePageSelectedBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(final Context context, final Intent intent) {
+            int page = intent.getIntExtra(ScheduleIntent.EXTRA_SELECTED_PAGE, 0);
+            getActionBar().setSelectedNavigationItem(page);
         }
     }
 }

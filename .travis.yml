@@ -40,7 +40,7 @@ script:
   - sudo chmod +x gradlew
   - ./gradlew connectedCheck
 
-  - if [[ $LINT == 'true' ]]; then ./gradlew lint ; fi                                                                        ; fi
+  - if [[ $LINT == 'true' ]]; then ./gradlew lint ; fi
 
 notifications:
   email: false

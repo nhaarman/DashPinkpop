@@ -3,12 +3,14 @@
 <com.nhaarman.dashclock.pinkpop.schedule.MultiPaneSchedulePresenter
     android:id="@+id/activity_schedule_presenter"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
     android:divider="?android:dividerVertical"
     android:orientation="horizontal"
-    android:showDividers="middle">
+    android:showDividers="middle"
+    tools:ignore="InconsistentLayout">
 
     <LinearLayout
         android:layout_width="0dp"

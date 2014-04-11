@@ -10,7 +10,7 @@ public class Schedule {
     private final String[][] mArtistLists;
 
     private Schedule(final Resources resources) {
-        TypedArray ta = resources.obtainTypedArray(R.array.all_artists);
+        TypedArray ta = resources.obtainTypedArray(R.array.artists_schedule);
         int n = ta.length();
         mArtistLists = new String[n][];
         for (int i = 0; i < n; ++i) {

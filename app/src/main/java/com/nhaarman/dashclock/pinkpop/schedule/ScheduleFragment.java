@@ -1,14 +1,9 @@
 package com.nhaarman.dashclock.pinkpop.schedule;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -24,10 +19,8 @@ import java.util.Comparator;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
-
 public class ScheduleFragment extends Fragment {
 
-    public static final String EVENT_PREFERENCES_CLICKED = "com.nhaarman.dashclock.pinkpop.schedule.event_preferences_clicked";
     private static final String ARGUMENT_ARTISTS = "com.nhaarman.dashclock.pinkpop.schedule.argument_artists";
     private StickyListHeadersListView mListView;
 

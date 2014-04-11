@@ -11,4 +11,5 @@ public class ScheduleIntent extends Intent {
     public ScheduleIntent(final String action) {
         super(action);
     }
+
 }

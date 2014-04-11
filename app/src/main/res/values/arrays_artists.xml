@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="all_artists">
+    <string-array name="artists_schedule" translatable="false">
         <item>@array/artists_saturday</item>
         <item>@array/artists_sunday</item>
         <item>@array/artists_monday</item>

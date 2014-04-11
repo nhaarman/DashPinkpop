@@ -26,6 +26,7 @@ public class ScheduleActivityTest extends ActivityInstrumentationTestCase2<Sched
 
     private static final int DELAY_MILLIS = 300;
     private static final int WAIT_MILLIS = 5000;
+    private static final int MONITOR_TIME_OUT = 5000;
 
     private Instrumentation mInstrumentation;
     private ScheduleActivity mActivity;
@@ -67,7 +68,7 @@ public class ScheduleActivityTest extends ActivityInstrumentationTestCase2<Sched
         Instrumentation.ActivityMonitor activityMonitor = mInstrumentation.addMonitor(PreferencesActivity.class.getName(), null, false);
         mInstrumentation.invokeMenuActionSync(mActivity, R.id.menu_fragment_schedule_preferences, 0);
 
-        Activity preferencesActivity = mInstrumentation.waitForMonitorWithTimeout(activityMonitor, 5000);
+        Activity preferencesActivity = mInstrumentation.waitForMonitorWithTimeout(activityMonitor, MONITOR_TIME_OUT);
         assertThat(preferencesActivity, is(not(nullValue())));
         assertThat(preferencesActivity, is(instanceOf(PreferencesActivity.class)));
         preferencesActivity.finish();

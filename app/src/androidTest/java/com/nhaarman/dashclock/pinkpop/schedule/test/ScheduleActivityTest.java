@@ -42,7 +42,11 @@ public class ScheduleActivityTest extends ActivityInstrumentationTestCase2<Sched
         super.setUp();
         mInstrumentation = getInstrumentation();
         mActivity = getActivity();
-        mViewPager = (ViewPager) mActivity.findViewById(R.id.activity_schedule_viewpager);
+
+        View presenter = mActivity.findViewById(R.id.activity_schedule_presenter);
+        if (presenter instanceof ViewPager) {
+            mViewPager = (ViewPager) presenter;
+        }
         mSaturdayFragmentHolder = mActivity.findViewById(R.id.activity_schedule_saturdayfragmentholder);
     }
 

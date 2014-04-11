@@ -2,7 +2,7 @@
 <manifest
     package="com.nhaarman.dashclock.pinkpop"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="369">
+    android:versionCode="371">
 
     <application
         android:allowBackup="true"
